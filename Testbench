@@ -1,0 +1,29 @@
+module alu_tb( );
+reg [3:0]a;
+reg [3:0]b;
+reg [1:2]opcode;
+wire [7:0]z;
+
+alu_8bits uut (
+    .a(a),
+    .b(b),
+    .opcode(opcode),
+    .k(z)
+);
+
+
+initial 
+begin
+    $monitor("Time=%0t a=%d b=%d opcode=%b z=%d", $time, a, b, opcode, z);
+
+    
+#10 a = 4; b = 3; opcode = 2'b00;
+#10 a = 8; b = 5; opcode = 2'b01; 
+#10 a = 3; b = 4; opcode = 2'b10;
+#10 a = 8; b = 2; opcode = 2'b11;
+#10 a = 7; b = 3; opcode = 2'b00; 
+#10 a = 9; b = 4; opcode = 2'b01;
+#10 $finish;
+end
+
+endmodule
